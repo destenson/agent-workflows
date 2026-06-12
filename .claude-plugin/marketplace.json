@@ -1,0 +1,11 @@
+{
+  "name": "agent-workflows",
+  "owner": { "name": "Dennis E" },
+  "plugins": [
+    {
+      "name": "agentic-workflow",
+      "source": "./plugins/agentic-workflow",
+      "description": "Spec-durable agentic development workflow: artifact loading, per-turn standing-rule re-injection, distillation gating, and the elicitation/audit/spike/retrospective/entropy skills. Implements agentic-dev-workflow.md."
+    }
+  ]
+}
