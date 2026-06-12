@@ -81,26 +81,40 @@ The `Trap rating` field exists because the most dangerous dead ends are the ones
 
 ## Hook configuration sketch (Claude Code)
 
+These bindings are implemented as a plugin in `plugins/agentic-workflow/`; the JSON below mirrors that plugin's `hooks/hooks.json` (which uses `${CLAUDE_PLUGIN_ROOT}` so the commands resolve wherever the plugin is installed). The same JSON works in a project's `.claude/settings.json` if you point the commands at real paths instead. Refine against the current hook API before relying on it.
+
 ```jsonc
-// .claude/settings.json (sketch — refine against current hook API)
+// plugins/agentic-workflow/hooks/hooks.json
 {
   "hooks": {
     "SessionStart": [{
       "hooks": [{ "type": "command",
-        "command": "cat .claude/prompts/session-probe.md" }]
+        // cats SPEC/ASSUMPTIONS/DECISIONS/LESSONS if present, then the session probe
+        "command": "${CLAUDE_PLUGIN_ROOT}/scripts/session-start.sh" }]
     }],
-    "Stop": [{
+    "UserPromptSubmit": [{
       "hooks": [{ "type": "command",
-        "command": "check_journals_updated.sh"  // exits nonzero w/ distillation prompt if journals untouched this session
-      }]
+        // re-injects the standing rules every turn so they don't decay as context fills
+        "command": "${CLAUDE_PLUGIN_ROOT}/scripts/standing-rules.sh" }]
     }],
     "PreToolUse": [{
       "matcher": "Edit|Write",
       "hooks": [{ "type": "command",
-        "command": "complexity_gate.sh"  // blocks edits to files over budget; emits refactor-or-split instruction
-      }]
+        // advisory only (never blocks): warns when the target file is over COMPLEXITY_BUDGET_LINES
+        "command": "${CLAUDE_PLUGIN_ROOT}/scripts/complexity-gate.sh" }]
+    }],
+    "Stop": [{
+      "hooks": [{ "type": "command",
+        // blocks the first stop of a session with the distillation prompt, then allows the next
+        "command": "${CLAUDE_PLUGIN_ROOT}/scripts/distillation-gate.sh" }]
     }]
   }
 }
 ```
-The two shell gates are intentionally small: `check_journals_updated.sh` compares journal mtimes against session start; `complexity_gate.sh` checks the target file's line count against the cap.
+
+Notes on the gates as implemented:
+
+- `session-start.sh` is one-shot context loading; the standing rules moved to `UserPromptSubmit` (`standing-rules.sh`) because a once-per-session injection decays as the window fills, and the judgment-based rules are exactly the ones that must stay live.
+- `complexity-gate.sh` is **advisory** — it parses the tool's `file_path` from hook JSON (`jq`), compares the file's line count against `COMPLEXITY_BUDGET_LINES` (default 1000), and warns. It never blocks; enforcement belongs in CI, and a hard mid-task block strands the agent in partial states.
+- `distillation-gate.sh` gates on a **decision being prompted, not content being produced**. It writes a per-session marker (`.agentic-workflow/state/`, keyed by `session_id`) and blocks once with the distillation prompt; the next stop is allowed whether the agent wrote entries or declared empty. An mtime comparison was rejected because it can't recognize "declare empty" and so would force filler — the failure the decision-gate exists to avoid. A shell hook can't tell a real lesson from filler regardless, so the honesty of the entry rides on the standing rules, not the gate.
+- Not yet wired (described in `agentic-dev-workflow.md`, deferred until the base hooks are exercised): `SubagentStop` to gate fresh-instance audits/spikes, and `PreCompact` to re-read the artifacts after compaction.
