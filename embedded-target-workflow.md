@@ -4,10 +4,10 @@ A workflow for agent-assisted development against a remote embedded Linux target
 
 ## Principles
 
-1. **Reify the loop.** The write→compile→deploy→run→collect cycle is hands-on only because it exists as procedural knowledge. Every step becomes a script with machine-readable output; then an agent can drive the entire cycle unattended.
+1. **Script the loop.** The write→compile→deploy→run→collect cycle stays hands-on only as long as it lives in someone's head as procedural knowledge. Every step becomes a script with machine-readable output; then an agent can drive the entire cycle unattended.
 2. **Occurrences are scarce.** For environment-dependent bugs, the limiting resource is not execution time but occurrences of the triggering condition. The loop is designed to extract maximum information per occurrence (capture-first) and to synthesize the condition on demand where possible (fault injection).
 3. **Execution is the success signal.** A fix is done when a checked-in repro passes on-device, never when the diff looks right.
-4. **Headers tell the story.** Video payload is bulky and diagnostically near-worthless; protocol/timing bugs live in headers, sequence numbers, and timestamps. Capture accordingly.
+4. **Headers carry most of the diagnostic value.** Protocol and timing bugs live in headers, sequence numbers, and timestamps; the video payload is enormous by comparison and rarely needed to diagnose them. Capture headers always; capture payload as a deliberate exception (content-corruption bugs), not a default.
 
 ## The Harness
 
@@ -55,7 +55,7 @@ Full pcap of a video stream is infeasible; full pcap is also unnecessary.
   Small analysis scripts in `harness/analyze/` (sequence-gap finder, inter-packet-time histogram, malformed-packet filter) so the agent reads conclusions, not packets. Wireshark remains the human tool for novel protocol forensics; everything routine is scripted.
 - On bug occurrence, `collect-diag.sh` snapshots the relevant ring window into the bundle.
 
-## Fault Injection (bottled environments)
+## Fault Injection (synthesizing the trigger conditions)
 
 Network degradation is synthesizable; a library of small scripts gives the agent environmental conditions as commands:
 
@@ -69,13 +69,13 @@ Network degradation is synthesizable; a library of small scripts gives the agent
 #                                       point; reports the reproducing region
 ```
 
-The sweep is the key tool for timing-dependent dropout bugs: "hard to replicate, seems to depend on timing" usually means the bug lives in a small region of (dropout length × phase within the protocol cycle). A human cannot search that space; an agent running `sweep-dropout.sh` overnight can. Once the reproducing region is found, the repro script pins those parameters and the bug is deterministic from then on.
+The sweep is the key tool for timing-dependent dropout bugs: "hard to replicate, seems to depend on timing" often means the bug only triggers in a small region of (dropout length × phase within the protocol cycle). Searching that space by hand is impractical; an agent running `sweep-dropout.sh` overnight can cover it. Once the reproducing region is found, the repro script pins those parameters and the bug is deterministic from then on.
 
 Trace replay complements injection where the trigger is a specific input sequence rather than degradation: harvested header traces or control-plane captures replayed via tcpreplay (or a protocol-level player). Timing-sensitive interactions may not replay faithfully; injection sweeps are the fallback.
 
-## Observability (replacing hope-instrumentation)
+## Observability (instrument before the bug, not per-bug)
 
-The failure mode to eliminate: bug occurs, logs turn out not to cover the failing region, occurrence wasted.
+The failure mode to eliminate: a bug occurs, the logs turn out not to cover the failing region, and the occurrence is wasted. Instrumentation added after the fact, per-bug, is always one occurrence behind.
 
 - **Structured events at every boundary and state transition:** socket errors, timeouts, reconnect attempts, buffer high-water marks, sequence-gap detections, state-machine transitions — one consistent, greppable taxonomy. These are the places environment bugs surface; instrument them once, systematically, instead of per-bug.
 - **Counters over logs for timing pathologies:** periodically sampled queue depths, drop counts, gap counts, restart counts. A counter time series often localizes a timing bug faster than any log narrative.
@@ -91,7 +91,7 @@ Deployed/test devices may have journald configured volatile or tiny (flash-spari
 
 ### Episodic capture (triggers)
 
-Bugs here announce themselves by log rate: quiet baseline, eruption at failure, recovery. Capture is therefore episodic, with two triggers:
+Many bugs in this class announce themselves by log rate: quiet baseline, an eruption at failure, recovery. Capture is therefore episodic, with two triggers:
 
 - **Rate anomaly (generic):** the follower monitors message rate per unit; a spike fires capture even with no known signature — this is what catches novel bugs.
 - **Signature match (specific):** known patterns, kept as config data in `signatures.d/` — never code — so new patterns are dropped in (even scp'd mid-hunt) without rebuilding anything.
@@ -129,7 +129,7 @@ The verification ladder, cheapest tier first:
 2. `cargo test` on the host — unit/integration tests for everything hardware-independent (protocol logic, state machines, parsers).
 3. On-device repro via `harness/loop.sh` — the only tier that costs a deploy, reserved for environment- and hardware-dependent behavior.
 
-This ladder is why on-device Rust debugging converges in a few cycles where Python takes many: tiers 1–2 absorb most defects before the device is involved.
+Tiers 1–2 absorb most defects before the device is involved, which is why Rust debugging should need far fewer deploy cycles than Python, whose only runtime is the device.
 
 ### Migration seam
 
