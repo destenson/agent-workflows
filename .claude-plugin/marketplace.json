@@ -1,0 +1,11 @@
+{
+  "name": "agent-workflows",
+  "owner": { "name": "Dennis E" },
+  "plugins": [
+    {
+      "name": "gstreamer-rs-workflow",
+      "source": "./plugins/gstreamer-rs-workflow",
+      "description": "Agent-assisted debugging methodology and scaffolding for GStreamer/DeepStream video pipelines with a forked gstreamer-rs element on Jetson: failure-class triage, pipeline reduction, thread/object-lifetime review, fork policy, reconnect-repro pattern, plus PIPELINE.md and harness/fault-server contract stubs. Implements gstreamer-deepstream-workflow.md."
+    }
+  ]
+}

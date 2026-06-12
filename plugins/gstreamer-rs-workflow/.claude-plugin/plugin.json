@@ -1,0 +1,7 @@
+{
+  "name": "gstreamer-rs-workflow",
+  "version": "0.1.0",
+  "description": "Implements gstreamer-deepstream-workflow.md: skills that encode GStreamer/DeepStream debugging instincts (failure-class triage, pipeline reduction, thread/object-lifetime review, fork policy, reconnect-repro), a PIPELINE.md scaffolder, harness/fault-server contract stubs, and an optional env-gated reminder that surfaces the lifetime checklist when editing the forked element. Extends the base agentic-workflow and embedded-target workflows.",
+  "author": { "name": "Dennis E" },
+  "hooks": "./hooks/hooks.json"
+}
