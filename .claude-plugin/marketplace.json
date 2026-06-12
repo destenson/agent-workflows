@@ -6,6 +6,11 @@
       "name": "agentic-workflow",
       "source": "./plugins/agentic-workflow",
       "description": "Spec-durable agentic development workflow: artifact loading, per-turn standing-rule re-injection, distillation gating, and the elicitation/audit/spike/retrospective/entropy skills. Implements agentic-dev-workflow.md."
+    },
+    {
+      "name": "embedded-target",
+      "source": "./plugins/embedded-target",
+      "description": "Extension of agentic-workflow for remote embedded Linux targets (e.g. Jetson): loads DEVICE.md at session start, scaffolds the build-deploy-run-collect harness, repro library, fault-injection and headers-only capture templates, and ships the reproducible / instrument-and-wait debug-loop skills. Implements embedded-target-workflow.md."
     }
   ]
 }
