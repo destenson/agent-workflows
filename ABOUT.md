@@ -14,7 +14,7 @@ These documents are written as working specifications, not doctrine. They make c
 
 ### `agentic-dev-workflow.md`
 
-The base workflow. It defines the general development loop for agent-driven projects: design elicitation, assumption audits, validation spikes, scoped implementation sessions, end-of-session distillation, and periodic entropy-reduction passes. It also defines the durable project artifacts the workflow depends on: `SPEC.md`, `ASSUMPTIONS.md`, `DECISIONS.md`, and `LESSONS.md`.
+The base workflow. It defines the general development loop for agent-driven projects: design elicitation, assumption audits, validation spikes, scoped implementation sessions, bug investigation (where the durable artifact is often understanding rather than a diff), end-of-session distillation, and periodic entropy-reduction passes. It also defines the durable project artifacts the workflow depends on: `SPEC.md`, `ASSUMPTIONS.md`, `DECISIONS.md`, and `LESSONS.md`.
 
 Read this first. The other workflow documents extend it rather than replace it.
 
