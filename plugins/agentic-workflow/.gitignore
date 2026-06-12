@@ -1,0 +1,2 @@
+# Per-session state written by the distillation gate when the plugin runs in a project.
+.agentic-workflow/
