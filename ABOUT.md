@@ -29,6 +29,7 @@ If you are new to the material, read in this order:
 1. `agentic-dev-workflow.md` for the core model.
 2. `workflow-prompts-and-templates.md` for the prompts, standing rules, and artifact formats that operationalize that model.
 3. `embedded-target-workflow.md` only if your code executes primarily on a remote device or in an environment that cannot be reproduced well on the development host.
+4. `c-suite-plugin.md` only if you are building a plugin for the C-Suite executive orchestration system.
 
 ## What The Workflow Optimizes For
 

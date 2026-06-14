@@ -21,6 +21,11 @@
       "name": "sysadmin-workflow",
       "source": "./plugins/sysadmin-workflow",
       "description": "Self-contained workflow for administering and troubleshooting remote systems (Linux/SSH, cloud, containers/k8s, appliances): loads FLEET.md plus the INCIDENTS / CHANGELOG / RUNBOOKS journals at session start, re-injects ops standing rules per turn, flags destructive Bash commands with an out-of-band audit trail, gates session exit on a journaling decision, ships /fleet-init and /fleet-status commands, and the troubleshooting-loop / fleet-onboard / incident-record / runbook-capture skills."
+    },
+    {
+      "name": "c-suite",
+      "source": "./plugins/c-suite",
+      "description": "Convenes executive-officer review lenses (CEO / CFO / COO / CTO / CMO / CLO) on a single cross-domain decision and preserves their disagreement instead of averaging it into false consensus. Keeps a small governance spine (CHARTER / STRATEGY / BOARD) as the project's executive memory, ships /c-suite-init and the /board-review convening workflow plus per-officer review skills, and gates session exit on recording any board decision (and its dissent) into BOARD.md."
     }
   ]
 }
