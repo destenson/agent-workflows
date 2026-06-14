@@ -15,7 +15,7 @@
     {
       "name": "research-workflow",
       "source": "./plugins/research-workflow",
-      "description": "Spec-durable research workflow: artifact loading, per-turn standing-rule re-injection, distillation gating, and the problem-statement / literature-scan / gap-analysis / generate-research-proposal / experiment-design / preregistration / results-memo / negative-results / decision-memo skills. Implements research-workflow.md."
+      "description": "Self-contained base research workflow: loads the durable research artifacts (commonly abstract / proposal / experiments / results) from research/ at session start, re-injects research standing rules per turn, gates session exit on a distillation decision, ships /research-init, and the problem-statement / literature-scan / gap-analysis / generate-research-proposal / experiment-design / preregistration / results-memo / negative-results / decision-memo skills."
     },
     {
       "name": "sysadmin-workflow",

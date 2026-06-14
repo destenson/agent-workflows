@@ -1,6 +1,6 @@
 {
   "name": "research-workflow",
   "version": "0.1.0",
-  "description": "Implements the base research workflow (research-workflow.md): loads the four durable artifacts at session start, re-injects the standing rules every turn, gates session exit on a distillation decision, warns on complexity-budget violations, and ships the problem-statement / literature-scan / gap-analysis / generate-research-proposal / experiment-design / preregistration / results-memo / negative-results / decision-memo skills.",
+  "description": "Self-contained base research workflow: loads the durable research artifacts (commonly abstract / proposal / experiments / results) from research/ at session start, re-injects research standing rules every turn, gates session exit on a distillation decision, ships /research-init, and the problem-statement / literature-scan / gap-analysis / generate-research-proposal / experiment-design / preregistration / results-memo / negative-results / decision-memo skills.",
   "author": { "name": "Dennis E" }
 }
