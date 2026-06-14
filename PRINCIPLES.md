@@ -1,8 +1,8 @@
 # Principles
 
-The workflows in this repository — agentic development, embedded-target, research, sysadmin, and c-suite — look different on the surface but rest on the same small set of ideas. This document states those ideas as a numbered, citable canon, in the spirit of [12-factor agents](https://github.com/humanlayer/12-factor-agents) but aimed at a different layer.
+The workflows in this repository — agentic development, embedded-target, research, sysadmin, and c-suite — look different on the surface but rest on the same small set of ideas. This document states those ideas as a numbered, citable canon.
 
-12-factor agents is about the *agents you ship*: how to architect LLM-powered software that survives contact with production. This canon is about the *operation of a coding agent during development*: how a human runs Claude Code sessions so that intent, assumptions, and lessons survive across sessions. The two are complementary, not competing — most of 12-factor's tactical factors (tool calls, structured outputs, stateless reducers) live below the layer these workflows operate at, because Claude Code already implements them. See "Relationship to 12-factor agents" at the end for the mapping.
+These principles concern the *operation of a coding agent during development*: how a human runs Claude Code sessions so that intent, assumptions, and lessons survive across sessions. This is a distinct concern from how to architect an LLM-powered application that you ship to production — that lower layer (tool calling, structured outputs, request handling) is largely provided by Claude Code itself, so the workflows here build on top of it rather than reimplementing it.
 
 Everything here is a working hypothesis drawn from limited experience, not settled doctrine. The principles should be corrected wherever real project use falsifies them — the same standard the workflows hold their own specs to.
 
@@ -72,15 +72,6 @@ When several review lenses (executive officers, or any set of distinct perspecti
 
 ---
 
-## Relationship to 12-factor agents
+## Why a numbered canon
 
-This canon and 12-factor agents agree on the spine — agents are mostly deterministic software with LLM steps at chosen points, and the engineering is in owning the context, the control flow, and the human contact points rather than handing everything to an autonomous loop. The factors map roughly as follows, with the caveat that these workflows operate one layer up from agent architecture:
-
-- **Own your context window** (12FA factor 3) is the direct parallel to factors 1, 2, and 5 here: the durable artifacts *are* the owned context, and decay-aware injection is how that context is kept live.
-- **Own your prompts / own your control flow** (12FA factors 2, 8) parallel factor 4: hooks, gates, and scripted prompts are owned, deterministic control flow wrapped around the model.
-- **Unify execution and business state / stateless reducer / launch-pause-resume** (12FA factors 5, 6, 12) parallel factor 3: the artifacts are meant to be the serialized state from which a cold session reconstructs its working context, which is what makes restart a realistic operation.
-- **Contact humans with tool calls** (12FA factor 7) parallels factor 10: human contact is a structured, first-class step, not an afterthought.
-- **Compact errors into the context window** (12FA factor 9) parallels factor 8's discipline of recording compacted understanding rather than re-dumping raw failure.
-- **Small, focused agents** (12FA factor 10) is embodied structurally here in skills and fresh-instance subagents rather than stated as a factor.
-
-The factors 12-factor agents spends most of its detail on — natural-language-to-tool-calls, tools-as-structured-outputs (12FA factors 1, 4) — are below the layer this canon addresses, because Claude Code already provides the tool-calling substrate. The borrow that matters is structural, not tactical: the value of a named, numbered, citable set of principles is that it can be taught, referenced, and argued with, which is the whole reason this document exists.
+These principles already live, in scattered form, across the individual workflow documents — as observations, standing rules, and lists of failure modes. Stating them once as a named, numbered set is not redundant: a principle that can be cited ("this violates factor 6") can be taught, referenced in review, and argued with, in a way that the same idea buried in prose cannot. The canon is the shared spine; each workflow document is the detailed application of these principles to one kind of work.
