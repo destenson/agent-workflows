@@ -45,7 +45,7 @@ It is **advisory and fires every time** — it never blocks. Each execution of a
 ## Install & use
 
 ```
-/plugin marketplace add /home/dennis/src/agent-workflows
+/plugin marketplace add git@github.com:destenson/agent-workflows.git
 /plugin install sysadmin-workflow
 # then, in a project that administers a fleet:
 /fleet-init
