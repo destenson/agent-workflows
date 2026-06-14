@@ -41,4 +41,4 @@ Then, in a project you want to run the workflow in:
 
 ## State
 
-The distillation gate writes per-session markers under `.agentic-workflow/state/` in the project. Add `.agentic-workflow/` to the project's `.gitignore` (`/project-docs-init` does this).
+The distillation gate's once-per-session marker lives in the temp dir (`${TMPDIR:-/tmp}/agentic-workflow/`), keyed by session id — never in the project. The plugin leaves nothing in the working tree but the durable artifacts (SPEC/ASSUMPTIONS/DECISIONS/LESSONS) themselves, so there is nothing extra to `.gitignore`.
