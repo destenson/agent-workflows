@@ -1,0 +1,6 @@
+{
+  "name": "sysadmin-workflow",
+  "version": "0.1.0",
+  "description": "Self-contained workflow for administering and troubleshooting remote systems (Linux/SSH, cloud, containers/k8s, appliances). Loads four durable artifacts (FLEET.md / INCIDENTS.md / RUNBOOKS.md / CHANGELOG.md) at session start, re-injects ops standing rules every turn, advises on destructive commands with an out-of-band audit trail, gates session exit on a journaling decision, and ships the troubleshooting-loop / fleet-onboard / incident-record / runbook-capture skills.",
+  "author": { "name": "Dennis E" }
+}

@@ -11,6 +11,11 @@
       "name": "embedded-target",
       "source": "./plugins/embedded-target",
       "description": "Extension of agentic-workflow for remote embedded Linux targets (e.g. Jetson): loads DEVICE.md at session start, scaffolds the build-deploy-run-collect harness, repro library, fault-injection and headers-only capture templates, and ships the reproducible / instrument-and-wait debug-loop skills. Implements embedded-target-workflow.md."
+    },
+    {
+      "name": "sysadmin-workflow",
+      "source": "./plugins/sysadmin-workflow",
+      "description": "Self-contained workflow for administering and troubleshooting remote systems (Linux/SSH, cloud, containers/k8s, appliances): loads FLEET.md plus the INCIDENTS / CHANGELOG / RUNBOOKS journals at session start, re-injects ops standing rules per turn, flags destructive Bash commands with an out-of-band audit trail, gates session exit on a journaling decision, ships /fleet-init and /fleet-status commands, and the troubleshooting-loop / fleet-onboard / incident-record / runbook-capture skills."
     }
   ]
 }
