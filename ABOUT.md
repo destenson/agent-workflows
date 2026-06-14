@@ -6,6 +6,7 @@ The central idea is that agent labor makes code generation cheap, but it does no
 
 ## What Is Here
 
+- `PRINCIPLES.md` distills the ideas common to all of these workflows into a numbered, citable canon. It is the shortest way to understand what the workflows optimize for and why; the other documents are the detailed application of these principles to specific kinds of work.
 - `agentic-dev-workflow.md` describes the core workflow for agent-driven development in general-purpose software projects. It covers the lifecycle from design interview through assumption audit, spikes, implementation sessions, entropy-reduction passes, and restart protocol.
 - `embedded-target-workflow.md` extends the core workflow for projects that run on a remote embedded Linux device. It focuses on scripted build/deploy/run loops, reproducible on-device repros, diagnostic capture, network fault injection, and the different policies needed for Rust and Python on embedded targets.
 - `workflow-prompts-and-templates.md` contains the operational pieces that make the workflow executable: hook prompts, standing rules, and templates for the durable artifacts such as `ASSUMPTIONS.md`, `DECISIONS.md`, and `LESSONS.md`.
@@ -26,10 +27,11 @@ The intended human role is not "write everything and ask the agent to type it in
 
 If you are new to the material, read in this order:
 
-1. `agentic-dev-workflow.md` for the core model.
-2. `workflow-prompts-and-templates.md` for the prompts, standing rules, and artifact formats that operationalize that model.
-3. `embedded-target-workflow.md` only if your code executes primarily on a remote device or in an environment that cannot be reproduced well on the development host.
-4. `c-suite-plugin.md` only if you are building a plugin for the C-Suite executive orchestration system.
+1. `PRINCIPLES.md` for the ideas all the workflows share, in brief.
+2. `agentic-dev-workflow.md` for the core model.
+3. `workflow-prompts-and-templates.md` for the prompts, standing rules, and artifact formats that operationalize that model.
+4. `embedded-target-workflow.md` only if your code executes primarily on a remote device or in an environment that cannot be reproduced well on the development host.
+5. `c-suite-plugin.md` only if you are building a plugin for the C-Suite executive orchestration system.
 
 ## What The Workflow Optimizes For
 
