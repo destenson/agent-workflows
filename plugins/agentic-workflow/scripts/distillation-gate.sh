@@ -19,14 +19,17 @@ stop_active="$(printf '%s' "$input" | jq -r '.stop_hook_active // false')"
 
 # Only engage in projects that have actually adopted the workflow. A project with
 # none of the durable artifacts is pre-init: there is nothing to distill into, so
-# the gate stays silent and — crucially — creates no state directory. Otherwise
-# this Stop hook would scatter an .agentic-workflow/ dir into every project a
-# session ends in, workflow or not.
+# the gate stays silent rather than prompting in a project that does not use this
+# workflow.
 if [[ ! -f SPEC.md && ! -f ASSUMPTIONS.md && ! -f DECISIONS.md && ! -f LESSONS.md ]]; then
   exit 0
 fi
 
-STATE_DIR=".agentic-workflow/state"
+# The once-per-session marker is throwaway cross-invocation state, not project
+# memory, so it lives in the temp dir — never in the project. Keyed by the unique
+# session id; it vanishes on reboot like the ephemeral thing it is. This plugin
+# leaves nothing in the working tree but the durable artifacts themselves.
+STATE_DIR="${TMPDIR:-/tmp}/agentic-workflow"
 marker="${STATE_DIR}/distilled-${session_id}"
 
 # Already prompted this session, or we are inside the block-and-continue loop the
