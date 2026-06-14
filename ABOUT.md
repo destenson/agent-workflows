@@ -1,76 +1,61 @@
 # About This Repository
 
-This repository is a small library of workflow specifications for AI-agent-assisted software development. The documents here are not product docs and not project templates in the usual sense. They are operating manuals for how to structure work so an agent can contribute repeatedly without losing context, reintroducing known mistakes, or encoding bad assumptions into the codebase.
+This repository contains workflow documents for AI-agent-assisted software development. The documents are not product specifications or project code; they are operating guides for how to run development work with agents so that design intent, assumptions, and lessons survive across sessions.
 
-The common thesis across the repository is simple:
+The central idea is that agent labor makes code generation cheap, but it does not make judgment, validation, or durable project memory automatic. These workflows are therefore built around durable artifacts, explicit validation, and narrow operating loops that an agent can execute reliably.
 
-- agent sessions are strong at local execution and weak at preserving intent across time;
-- therefore the important project knowledge has to live in durable artifacts outside the code;
-- and whenever a useful practice can be enforced by scripts, hooks, or validation gates, it should be, because instruction-only discipline decays.
+## What Is Here
 
-These documents are written as working specifications, not doctrine. They make concrete claims about how agents behave, what failure modes matter, and which process constraints are worth the overhead. Those claims should be treated as hypotheses to refine against real projects.
+- `agentic-dev-workflow.md` describes the core workflow for agent-driven development in general-purpose software projects. It covers the lifecycle from design interview through assumption audit, spikes, implementation sessions, entropy-reduction passes, and restart protocol.
+- `embedded-target-workflow.md` extends the core workflow for projects that run on a remote embedded Linux device. It focuses on scripted build/deploy/run loops, reproducible on-device repros, diagnostic capture, network fault injection, and the different policies needed for Rust and Python on embedded targets.
+- `workflow-prompts-and-templates.md` contains the operational pieces that make the workflow executable: hook prompts, standing rules, and templates for the durable artifacts such as `ASSUMPTIONS.md`, `DECISIONS.md`, and `LESSONS.md`.
 
-## What is in here
+## Who This Is For
 
-### `agentic-dev-workflow.md`
+These documents are for people using coding agents as part of real software delivery, especially when:
 
-The base workflow. It defines the general development loop for agent-driven projects: design elicitation, assumption audits, validation spikes, scoped implementation sessions, bug investigation (where the durable artifact is often understanding rather than a diff), end-of-session distillation, and periodic entropy-reduction passes. It also defines the durable project artifacts the workflow depends on: `SPEC.md`, `ASSUMPTIONS.md`, `DECISIONS.md`, and `LESSONS.md`.
+- project intent is being lost between sessions,
+- assumptions are turning out to be wrong late in implementation,
+- the same dead ends keep getting rediscovered,
+- code entropy is accumulating faster than teams can pay it down,
+- or the execution environment is specialized enough that local development is a poor proxy for reality.
 
-Read this first. The other workflow documents extend it rather than replace it.
+The intended human role is not "write everything and ask the agent to type it in." The human acts as design reviewer, domain oracle, and final judge of trade-offs. The agent does the drafting, implementation, and iteration work inside a workflow that makes its reasoning durable and its mistakes easier to detect.
 
-### `embedded-target-workflow.md`
+## How To Read It
 
-An extension for projects that run on a remote embedded Linux target rather than on the development machine. Its focus is the build-deploy-run-collect loop, on-device repros, fault injection, capture strategy for environment-dependent bugs, and observability practices that let an agent work unattended against a stateful device.
+If you are new to the material, read in this order:
 
-This document is for situations where correctness depends on the real target environment: device-specific runtimes, physical links, unstable networks, hardware-bound media paths, or bugs that only appear on-device.
-
-### `gstreamer-deepstream-workflow.md`
-
-A narrower extension for GStreamer and NVIDIA DeepStream systems, especially Jetson deployments mixing Python application code, NVIDIA elements, and custom Rust plugins. It adds a debugging model for pipelines, reconnect failures, flow-localization, runtime graph dumps, source-fault simulation, thread and object-lifetime issues, and fork maintenance policy for custom GStreamer elements.
-
-Use this when the project's core failure modes live in dynamic media pipelines rather than in ordinary request/response application logic.
-
-### `workflow-prompts-and-templates.md`
-
-The operational companion. It turns the workflow ideas into concrete prompts, standing rules, journal templates, and hook sketches. If `agentic-dev-workflow.md` explains the model, this file is the first place to look when implementing it in tooling.
-
-## How to read the repository
-
-The intended reading order is:
-
-1. `agentic-dev-workflow.md`
-2. `workflow-prompts-and-templates.md`
-3. `embedded-target-workflow.md` if your code only really runs on a target device
+1. `agentic-dev-workflow.md` for the core model.
+2. `workflow-prompts-and-templates.md` for the prompts, standing rules, and artifact formats that operationalize that model.
+3. `embedded-target-workflow.md` only if your code executes primarily on a remote device or in an environment that cannot be reproduced well on the development host.
 4. `gstreamer-deepstream-workflow.md` if your embedded target is also a GStreamer/DeepStream video system
+5. `c-suite-plugin.md` only if you are building a plugin for the C-Suite executive orchestration system.
 
-That order matters because the later documents assume the earlier ones. The embedded workflow inherits the same spec discipline and journaling model; the GStreamer workflow inherits both the general workflow and the embedded execution model.
+## What The Workflow Optimizes For
 
-## Who this is for
+Across the documents, the workflow consistently optimizes for a few things:
 
-This repository is aimed at people who are already convinced that agents can write substantial amounts of code, but are not convinced that ordinary codebase habits are enough to keep long-running agent work coherent. The documents assume the human is still responsible for judgment, constraint setting, and design review, while the agent does most of the drafting, implementation, and mechanical iteration.
+- preserving the "why" outside the codebase,
+- forcing contact with reality early through spikes and repros,
+- making good practices structural through hooks and scripts rather than memory,
+- treating dead ends as first-class project knowledge,
+- and keeping restart from a corrected spec cheaper than rehabilitating a drifted implementation.
 
-The workflows are especially aimed at projects with one or more of these properties:
+This is not a claim that every project should use every part of the system. The documents describe a bias: when working with agents, unrecorded reasoning disappears quickly, so the workflow spends effort on durable context and executable loops rather than on hoping a future session will infer the same conclusions.
 
-- design intent is easy to lose between sessions;
-- invalid assumptions are expensive and hard to notice early;
-- environment-dependent bugs dominate the schedule;
-- the codebase accumulates workaround layers faster than humans prune them;
-- restarts or partial rewrites are realistic and should preserve knowledge rather than preserve every line of code.
+## Relationship Between The Documents
 
-## What these documents are trying to optimize for
+`agentic-dev-workflow.md` is the base workflow. `embedded-target-workflow.md` is a specialization for a harder execution environment, not a replacement. `workflow-prompts-and-templates.md` is the companion operations manual that turns the base ideas into prompts, rules, hooks, and artifact scaffolding.
 
-The repository does not try to maximize raw coding speed. It tries to optimize for a different outcome: a project that can survive many agent sessions, bad sessions, false starts, and even full implementation restarts without repeatedly paying for the same confusion.
+In short:
 
-In practice that means emphasizing:
-
-- explicit assumptions over implicit ones;
-- durable negative knowledge over undocumented dead ends;
-- reproducible validation over "the diff looks right";
-- deletion and consolidation as scheduled work, not an aspirational virtue;
-- hooks and gates where possible, because they outlast good intentions.
+- the workflow document explains the model,
+- the embedded document adapts the model to on-device development,
+- and the prompts/templates document provides the reusable machinery.
 
 ## Status
 
-Everything here should be read as an evolving draft. The workflows are intentionally specific enough to test in real projects and revise where they are wrong. If a real codebase falsifies one of the assumptions in these documents, the right response is to update the workflow, not to defend it.
+These documents describe a working approach, not settled doctrine. Several claims in them are explicitly hypotheses from limited experience. They should be refined against real project use, especially where the proposed hooks, gates, or journaling practices produce more friction than signal.
 
 
