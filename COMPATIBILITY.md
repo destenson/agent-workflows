@@ -52,3 +52,15 @@ There are no `commands/` directories in this repo; the `SKILL.md` is the single 
 "Manual only" skills carry `disable-model-invocation: true` in their frontmatter, so the model never triggers them on its own — they run only when you invoke them. These are the workflows that write or provision (the init scaffolders, `add-server`) or execute procedures against live hosts (`runbook`). `fleet-status` (read-only) and `incident` (reactive — you want it to engage when you report a problem) are left model-invocable. `disable-model-invocation` is a Claude Code frontmatter field; under Codex these skills are user-invoked via `@` regardless.
 
 The `c-suite` plugin's `board-review` and the per-officer reviews were already skills and follow the same model.
+
+## Harness-specific commands in skills
+
+A `SKILL.md` is shared verbatim by both tools, so a skill's core procedure must not hard-depend on a command or tool that only one harness provides. The clearest example is Claude Code's `/loop` (run a prompt on a recurring interval) and `/schedule`, along with the `Monitor` and `ScheduleWakeup` harness tools — none of these exist under Codex. A skill whose instructions say "now `/loop` this" reads fine under Claude Code and silently dangles under Codex, because the agent there has no such command to invoke.
+
+Two guidelines keep skills portable:
+
+1. **Express in-session repetition as prose, not as a command.** When a skill needs to iterate — work through a list of hosts, drive a fix-test loop, process each open ledger item — describe the loop in the skill's own text and let the agent run it inline. This is harness-agnostic and keeps the agent in one warm context. `sysadmin-workflow`'s `troubleshooting-loop` and `prototype-to-product`'s `convert-prototype` are written this way.
+
+2. **For repetition that should outlive the session, reach for the domain's own scheduler, not the harness's.** This matters most in `sysadmin-workflow`: recurring operations (poll host health, watch a deploy, re-check until a service recovers) usually need to keep running after the agent session ends, which a session-scoped construct like `/loop` cannot do. The ops world already has durable, harness-independent schedulers for exactly this — `cron`, `systemd` timers, `watch -n`, a `while sleep` loop on the host — and a skill should set one of those up on the target rather than hold the agent open in a loop.
+
+Where a harness feature genuinely helps (e.g. `/loop` as an interactive convenience for an operator who wants to keep polling while they watch), mention it only as an optional, clearly-labeled Claude-Code-only accelerator — never as the load-bearing mechanism the skill depends on.
