@@ -1,0 +1,13 @@
+{
+  "name": "gstreamer-rs-workflow",
+  "version": "0.1.0",
+  "description": "Implements gstreamer-deepstream-workflow.md: skills that encode GStreamer/DeepStream debugging instincts (failure-class triage, pipeline reduction, thread/object-lifetime review, fork policy, reconnect-repro), the PIPELINE.md and harness/fault-server scaffolders, contract stubs, and an optional env-gated reminder that surfaces the lifetime checklist when editing the forked element. Extends the base agentic-workflow and embedded-target workflows.",
+  "author": { "name": "Dennis E" },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "GStreamer-rs Workflow",
+    "category": "Coding",
+    "shortDescription": "GStreamer/DeepStream pipeline debugging on Jetson",
+    "longDescription": "Implements gstreamer-deepstream-workflow.md for debugging GStreamer/DeepStream video pipelines with a forked gstreamer-rs element (rtspsrc2) on Jetson. Ships skills that encode the debugging instincts — gst-failure-triage (classify by symptom), gst-pipeline-reduction (shrink to a minimal repro), gst-lifetime-review (object-lifetime/threading bugs and the forked-element review checklist), gst-fork-triage (fork policy), gst-reconnect-repro (RTSP fault server and assert-across-cycles invariants) — plus the pipeline-md-init and gst-harness-init scaffolders for PIPELINE.md and the harness/fault-server contract stubs, and an optional PreToolUse reminder (off unless GST_FORK_ELEMENT_PATH is set) that surfaces the lifetime checklist when a change targets the forked element. Extends the base agentic-workflow and embedded-target workflows."
+  }
+}

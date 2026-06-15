@@ -1,5 +1,7 @@
 ---
-description: Copy the GStreamer harness and RTSP fault-server contract stubs into the project for implementation.
+name: gst-harness-init
+disable-model-invocation: true
+description: Copy the GStreamer harness and RTSP fault-server contract stubs into the project's harness/ and faults/ directories for per-project implementation. Use when setting up the gstreamer-rs debugging harness in an application repo; the copied stubs are contracts that exit non-zero until filled in.
 ---
 
 Copy the contract stubs from `${CLAUDE_PLUGIN_ROOT}/templates/harness/` into the project's `harness/` directory and `${CLAUDE_PLUGIN_ROOT}/templates/faults/` into the project's `faults/` directory. For any file that already exists in the destination, leave it untouched and report it as skipped — never overwrite a real implementation with a stub.

@@ -38,6 +38,8 @@ There are no `commands/` directories in this repo; the `SKILL.md` is the single 
 | --- | --- | --- | --- |
 | `project-docs-init` | `/agentic-workflow:project-docs-init` | `@project-docs-init` | manual only |
 | `device-init` | `/embedded-target:device-init` | `@device-init` | manual only |
+| `pipeline-md-init` | `/gstreamer-rs-workflow:pipeline-md-init` | `@pipeline-md-init` | manual only |
+| `gst-harness-init` | `/gstreamer-rs-workflow:gst-harness-init` | `@gst-harness-init` | manual only |
 | `research-init` | `/research-workflow:research-init` | `@research-init` | manual only |
 | `c-suite-init` | `/c-suite:c-suite-init` | `@c-suite-init` | manual only |
 | `fleet-init` | `/sysadmin-workflow:fleet-init` | `@fleet-init` | manual only |

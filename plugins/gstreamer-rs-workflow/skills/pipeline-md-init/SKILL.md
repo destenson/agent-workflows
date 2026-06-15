@@ -1,5 +1,7 @@
 ---
-description: Scaffold PIPELINE.md (the pipeline's standing-context map) in the current application repo.
+name: pipeline-md-init
+disable-model-invocation: true
+description: Scaffold PIPELINE.md — the pipeline's standing-context map (graph, healthy-state numbers, probe points, control commands, known traps) — in the application repo. Use when setting up the gstreamer-rs workflow's durable pipeline context in a project that does not yet have a PIPELINE.md.
 ---
 
 Create `PIPELINE.md` in the application repo root from the template at `${CLAUDE_PLUGIN_ROOT}/templates/PIPELINE.md`, but only if it does not already exist — if it does, leave it and report that it was skipped.
