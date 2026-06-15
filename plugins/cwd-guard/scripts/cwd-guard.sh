@@ -48,7 +48,7 @@ fi
 
 [[ -z "$deny" ]] && exit 0
 
-reason="cwd-guard blocked this command: it contains ${deny}. The shell already runs in the project root, so address files inside it by a path relative to it (e.g. \"foo/bar\", not \"${cwd}/foo/bar\" or \"\$PWD/foo/bar\"). Rewrite the command with a relative path and retry. Absolute paths outside the project (e.g. /etc, \$HOME) are fine."
+reason="cwd-guard blocked this command: it contains ${deny}. The shell already runs in the project root, so address files inside it by a path relative to it (e.g. \"foo/bar\", not \"${cwd}/foo/bar\" or \"\$PWD/foo/bar\"). Rewrite the command with a relative path and retry. Absolute paths outside the project (e.g. /etc, \$HOME) are fine. If you genuinely need the project root as an absolute path because the command changes directory (e.g. it \"cd\"s into a temp dir, where a relative path would no longer resolve), use \"\$(git rev-parse --show-toplevel)\" — it yields the repo root independent of the current directory and is not blocked."
 
 jq -n --arg r "$reason" '{hookSpecificOutput: {hookEventName: "PreToolUse", permissionDecision: "deny", permissionDecisionReason: $r}}'
 exit 0

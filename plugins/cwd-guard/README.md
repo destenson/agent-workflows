@@ -11,6 +11,10 @@ A `PreToolUse` hook on the `Bash` tool denies a command when it contains:
 
 The deny is shown to the agent with a reason telling it to rewrite the command with a relative path and retry.
 
+### The one legitimate case it also catches
+
+The premise — "the shell runs in the project root, so use a relative path" — stops holding when a single command *changes directory* before using the path. Anchoring an absolute path to the project root and then `cd`-ing into a temp dir (`ROOT="$PWD"; ( cd "$tmp" && "$ROOT/script.sh" )`) is a correct use of `$PWD`, not the laziness the guard is aimed at, yet it trips the same rule. The guard blocks it anyway because it cannot tell the two apart, and the cost is low: the robust way to get the project root does not depend on the current directory at all — `$(git rev-parse --show-toplevel)` yields the repo root regardless of where the shell is, and is not blocked. The deny message points the agent at it. So the false positive nudges toward a strictly better construct rather than a worse one.
+
 ## What it leaves alone
 
 - Absolute paths **outside** the project — `/etc`, `/tmp`, `$HOME`, `~/.claude`, and so on are fine; only the working directory is guarded.
