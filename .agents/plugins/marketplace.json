@@ -1,0 +1,60 @@
+{
+  "name": "agent-workflows",
+  "interface": { "displayName": "Agent Workflows" },
+  "plugins": [
+    {
+      "name": "agentic-workflow",
+      "source": { "source": "local", "path": "./plugins/agentic-workflow" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_USE" },
+      "category": "Coding"
+    },
+    {
+      "name": "embedded-target",
+      "source": { "source": "local", "path": "./plugins/embedded-target" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_USE" },
+      "category": "Coding"
+    },
+    {
+      "name": "research-workflow",
+      "source": { "source": "local", "path": "./plugins/research-workflow" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_USE" },
+      "category": "Productivity"
+    },
+    {
+      "name": "sysadmin-workflow",
+      "source": { "source": "local", "path": "./plugins/sysadmin-workflow" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_USE" },
+      "category": "Productivity"
+    },
+    {
+      "name": "c-suite",
+      "source": { "source": "local", "path": "./plugins/c-suite" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_USE" },
+      "category": "Productivity"
+    },
+    {
+      "name": "handoff",
+      "source": { "source": "local", "path": "./plugins/handoff" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_USE" },
+      "category": "Coding"
+    },
+    {
+      "name": "bugs",
+      "source": { "source": "local", "path": "./plugins/bugs" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_USE" },
+      "category": "Coding"
+    },
+    {
+      "name": "prototype-to-product",
+      "source": { "source": "local", "path": "./plugins/prototype-to-product" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_USE" },
+      "category": "Coding"
+    },
+    {
+      "name": "cwd-guard",
+      "source": { "source": "local", "path": "./plugins/cwd-guard" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_USE" },
+      "category": "Coding"
+    }
+  ]
+}

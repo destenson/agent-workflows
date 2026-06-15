@@ -1,0 +1,12 @@
+{
+  "name": "cwd-guard",
+  "version": "0.1.0",
+  "description": "Denies any Bash command that hardcodes the current working directory — the project's own absolute path, a path under it, or a $PWD / $(pwd) expansion of it — so the agent addresses files inside the project by a path relative to the root instead. A PreToolUse(Bash) guard; absolute paths outside the project are left alone. Standalone — enable or disable at will.",
+  "author": { "name": "Dennis E" },
+  "interface": {
+    "displayName": "CWD Path Guard",
+    "category": "Coding",
+    "shortDescription": "Reject absolute working-directory paths in Bash",
+    "longDescription": "A PreToolUse(Bash) guard that denies any command hardcoding the current working directory — the project's own absolute path, a path under it, or a $PWD / $(pwd) expansion of it — so the agent uses paths relative to the project root. Absolute paths outside the project are left alone. Standalone — enable or disable at will."
+  }
+}

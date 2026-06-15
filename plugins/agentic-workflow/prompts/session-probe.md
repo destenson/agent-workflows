@@ -1,6 +1,6 @@
 --- SESSION PROBE (agentic-workflow) ---
 
-The durable artifacts above (SPEC.md, ASSUMPTIONS.md, DECISIONS.md, LESSONS.md) are this project's memory. If none were shown, the project is not yet initialized — run /project-docs-init before implementation work.
+The durable artifacts above (SPEC.md, ASSUMPTIONS.md, DECISIONS.md, LESSONS.md) are this project's memory. If none were shown, the project is not yet initialized — run project-docs-init skill before implementation work.
 
 Before touching any code, summarize:
 1. Current project state.

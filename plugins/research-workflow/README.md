@@ -9,11 +9,11 @@ Research has no fixed durable-artifact set the way software development does —
 
 - `SessionStart` → loads every top-level `.md` in `research/` into context (non-recursive, so bulky per-experiment logs in subdirectories don't flood the session) and emits a probe that forces a framing summary before any experiment or analysis.
 - `UserPromptSubmit` → re-injects the research standing rules every turn: report divergence between artifacts and data, pre-commit criteria before peeking at outcomes, journal decisions and negative results as they happen.
-- `Stop` → the distillation gate: prompts once per session to record decisions and especially falsified hypotheses / dead ends before ending. Its marker lives in `${TMPDIR:-/tmp}/research-workflow/`, never in the project; a pre-init guard keeps it silent in a repo that hasn't run `/research-init`.
+- `Stop` → the distillation gate: prompts once per session to record decisions and especially falsified hypotheses / dead ends before ending. Its marker lives in `${TMPDIR:-/tmp}/research-workflow/`, never in the project; a pre-init guard keeps it silent in a repo that hasn't run `/research-workflow:research-init`.
 
 There is deliberately **no complexity/line-cap gate** here — that is a code-maintainability concern from the software workflow, and the research artifacts are append-only records whose length tracks thoroughness, not debt. A research project doing heavy engineering can install `agentic-workflow` alongside this for the code-side gates.
 
-**Command:** `/research-init` scaffolds `research/` with the common starter artifacts (`abstract.md`, `proposal.md`, `experiments.md`, `results.md`) — a starting set, not a required one; add or drop to fit the work. The `research/` directory is meant to be committed; it is the project's research memory.
+**Skill:** `/research-workflow:research-init` scaffolds `research/` with the common starter artifacts (`abstract.md`, `proposal.md`, `experiments.md`, `results.md`) — a starting set, not a required one; add or drop to fit the work. The `research/` directory is meant to be committed; it is the project's research memory.
 
 ## Skills
 

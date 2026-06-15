@@ -16,7 +16,7 @@ One entry per host or system. Group by category if the fleet is large. Categorie
 - **Reach**: ssh alias / `kubectl --context` / cloud CLI + profile / management URL
 - **Role**: what it does, what depends on it, blast radius if it goes down
 - **Services**: unit/deployment names, restart commands, config paths, log paths
-- **State probes (read-only)**: the commands that report this host's health (uptime, disk, failed units, pod status, etc.) — used by /fleet-status
+- **State probes (read-only)**: the commands that report this host's health (uptime, disk, failed units, pod status, etc.) — used by fleet-status skill and incident-record skill to populate the incident report with the state at incident time 
 - **Constraints & safety**: commands that must NOT be run here; maintenance windows; data that must not be touched
 - **Known quirks**: anything that misleads diagnosis (clock drift, flaky interface, slow boot)
 

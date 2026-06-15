@@ -1,0 +1,13 @@
+{
+  "name": "embedded-target",
+  "version": "0.2.0",
+  "description": "Extension of agentic-workflow for remote embedded Linux targets (e.g. Jetson/L4T): loads DEVICE.md at session start, scaffolds the build-deploy-run-collect harness, repro library, fault-injection and headers-only capture templates, and ships skills for the reproducible and instrument-and-wait debug loops. Implements embedded-target-workflow.md.",
+  "author": { "name": "Dennis E" },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Embedded Target Loop",
+    "category": "Coding",
+    "shortDescription": "Remote embedded Linux debug loop",
+    "longDescription": "Extends the agentic workflow to remote embedded Linux targets (e.g. Jetson/L4T): loads DEVICE.md at session start, scaffolds the build-deploy-run-collect harness, repro library, fault-injection and headers-only capture templates, and ships the reproducible and instrument-and-wait debug-loop skills."
+  }
+}

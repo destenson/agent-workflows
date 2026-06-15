@@ -11,11 +11,11 @@ It is an **extension** of `agentic-workflow`, not a replacement. Install both: t
 
 **Skills** (invoke when relevant): `embedded-loop` (the reproducible and instrument-and-wait debug loops), `harness-setup`, `fault-injection`, `network-capture`, `observability-setup`.
 
-**Command:** `/device-init` scaffolds `DEVICE.md` plus the `harness/`, `faults/`, and `repros/` skeletons into the project from `templates/`.
+**Skill:** `/embedded-target:device-init` scaffolds `DEVICE.md` plus the `harness/`, `faults/`, and `repros/` skeletons into the project from `templates/`.
 
 ## The templates are the deliverable
 
-The workflow doc calls the harness scripts "sketches, to be filled in per project," because deploy mechanisms, paths, and device coordinates differ per target. So this plugin ships them as **templates** that `/device-init` copies into a project, each carrying the contract (structured exit codes, hard timeouts, idempotent reset, capture-first) with `# TODO(project)` markers where the device-specific commands go. The fault scripts (`dropout`/`lossy`/`partition`/`sweep-dropout`) are closer to working — `tc netem` / `iptables` are generic — but still need `TARGET_IF` and peer addresses.
+The workflow doc calls the harness scripts "sketches, to be filled in per project," because deploy mechanisms, paths, and device coordinates differ per target. So this plugin ships them as **templates** that `/embedded-target:device-init` copies into a project, each carrying the contract (structured exit codes, hard timeouts, idempotent reset, capture-first) with `# TODO(project)` markers where the device-specific commands go. The fault scripts (`dropout`/`lossy`/`partition`/`sweep-dropout`) are closer to working — `tc netem` / `iptables` are generic — but still need `TARGET_IF` and peer addresses.
 
 ```
 templates/
@@ -29,11 +29,11 @@ templates/
 ## Install & use
 
 ```
-/plugin marketplace add /home/dennis/src/agent-workflows
+/plugin marketplace add destenson/agent-workflows
 /plugin install agentic-workflow     # the base; install this too
 /plugin install embedded-target
 # then, in a device project:
-/device-init
+/embedded-target:device-init
 ```
 
 Then fill in, in order: `DEVICE.md` → `harness/env.sh` (`DEVICE_SSH`, timeouts) → the `# TODO(project)` markers in the harness scripts.
@@ -46,4 +46,4 @@ Then fill in, in order: `DEVICE.md` → `harness/env.sh` (`DEVICE_SSH`, timeouts
 ## Deliberately not included
 
 - The observability infrastructure (journal siphon, episodic-capture watcher, runtime log-level control, split diag `.deb`) is described in the `observability-setup` skill but not scaffolded as code — it is substantial, stateful, and project-shaped enough that a generic template would mislead. Build it from the skill guidance when a project needs it.
-- A permissions allowlist isn't injected automatically; `/device-init` recommends the entries and lets you add them to `.claude/settings.json`.
+- A permissions allowlist isn't injected automatically; `/embedded-target:device-init` recommends the entries and lets you add them to your coding agent's permission allowlist (for Claude Code, `.claude/settings.json`).

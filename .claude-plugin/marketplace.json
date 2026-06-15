@@ -20,17 +20,37 @@
     {
       "name": "research-workflow",
       "source": "./plugins/research-workflow",
-      "description": "Self-contained base research workflow: loads the durable research artifacts (commonly abstract / proposal / experiments / results) from research/ at session start, re-injects research standing rules per turn, gates session exit on a distillation decision, ships /research-init, and the problem-statement / literature-scan / gap-analysis / generate-research-proposal / experiment-design / preregistration / results-memo / negative-results / decision-memo skills."
+      "description": "Self-contained base research workflow: loads the durable research artifacts (commonly abstract / proposal / experiments / results) from research/ at session start, re-injects research standing rules per turn, gates session exit on a distillation decision, and ships the research-init / problem-statement / literature-scan / gap-analysis / generate-research-proposal / experiment-design / preregistration / results-memo / negative-results / decision-memo skills."
     },
     {
       "name": "sysadmin-workflow",
       "source": "./plugins/sysadmin-workflow",
-      "description": "Self-contained workflow for administering and troubleshooting remote systems (Linux/SSH, cloud, containers/k8s, appliances): loads FLEET.md plus the INCIDENTS / CHANGELOG / RUNBOOKS journals at session start, re-injects ops standing rules per turn, flags destructive Bash commands with an out-of-band audit trail, gates session exit on a journaling decision, ships /fleet-init and /fleet-status commands, and the troubleshooting-loop / fleet-onboard / incident-record / runbook-capture skills."
+      "description": "Self-contained workflow for administering and troubleshooting remote systems (Linux/SSH, cloud, containers/k8s, appliances): loads FLEET.md plus the INCIDENTS / CHANGELOG / RUNBOOKS journals at session start, re-injects ops standing rules per turn, flags destructive Bash commands with an out-of-band audit trail, gates session exit on a journaling decision, and ships the fleet-init / fleet-status / troubleshooting-loop / fleet-onboard / incident-record / runbook-capture skills."
     },
     {
       "name": "c-suite",
       "source": "./plugins/c-suite",
-      "description": "Convenes executive-officer review lenses (CEO / CFO / COO / CTO / CMO / CLO) on a single cross-domain decision and preserves their disagreement instead of averaging it into false consensus. Keeps a small governance spine (CHARTER / STRATEGY / BOARD) as the project's executive memory, ships /c-suite-init and the /board-review convening workflow plus per-officer review skills, and gates session exit on recording any board decision (and its dissent) into BOARD.md."
+      "description": "Convenes executive-officer review lenses (CEO / CFO / COO / CTO / CMO / CLO) on a single cross-domain decision and preserves their disagreement instead of averaging it into false consensus. Keeps a small governance spine (CHARTER / STRATEGY / BOARD) as the project's executive memory, ships the c-suite-init and board-review convening workflows plus per-officer review skills, and gates session exit on recording any board decision (and its dissent) into BOARD.md."
+    },
+    {
+      "name": "handoff",
+      "source": "./plugins/handoff",
+      "description": "Standalone session-handoff plugin: loads a pending HANDOFF.md at session start so the next session resumes where the last left off, gives a non-blocking reminder to record unfinished and newly-discovered work before wrapping up, and ships the handoff skill that writes, updates, and clears the rolling handoff. Enable or disable independently of the other workflows."
+    },
+    {
+      "name": "bugs",
+      "source": "./plugins/bugs",
+      "description": "Standalone bug-log plugin: when a BUGS.md exists at the project root, notes at session start that the project keeps a bug log and instructs the agent to record any bug found-but-not-fixed there (it does not load the file's contents), and gives a non-blocking reminder of the same before wrapping up. Ships the bugs skill that adds, updates, and resolves entries — removing each when fixed so the log tracks only what is still broken. Activates only once a BUGS.md exists; enable or disable independently of the other workflows."
+    },
+    {
+      "name": "prototype-to-product",
+      "source": "./plugins/prototype-to-product",
+      "description": "Hardens a working prototype into a pre-release product. Keeps a HARDENING.md gap ledger (release bar plus the itemized open gaps), loaded at session start together with the hardening standing rules, plus a non-blocking reminder to keep the ledger current. Ships assess-prototype (build the ledger), define-release-target (set the bar and prioritize, extending SPEC.md if present), and convert-prototype (work the ledger down one item per commit). Activates only once a HARDENING.md exists."
+    },
+    {
+      "name": "cwd-guard",
+      "source": "./plugins/cwd-guard",
+      "description": "Standalone Bash guard: a PreToolUse(Bash) hook that denies any command hardcoding the current working directory — the project's own absolute path, a path under it, or a $PWD / $(pwd) expansion of it — so the agent uses paths relative to the project root. Absolute paths outside the project are left alone."
     }
   ]
 }

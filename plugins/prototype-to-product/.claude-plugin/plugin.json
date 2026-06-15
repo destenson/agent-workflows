@@ -1,0 +1,6 @@
+{
+  "name": "prototype-to-product",
+  "version": "0.1.0",
+  "description": "Hardens a working prototype into a pre-release product. Ships a phased workflow — assess-prototype builds a HARDENING.md gap ledger, define-release-target sets the pre-release bar (extending SPEC.md if present) and prioritizes the ledger against it, convert-prototype works the ledger down one item per commit. Loads HARDENING.md and the hardening standing rules at session start, and reminds before wrap-up to keep the ledger current. Activates only once a HARDENING.md exists.",
+  "author": { "name": "Dennis E" }
+}

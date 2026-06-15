@@ -15,7 +15,7 @@ Add an entry to INCIDENTS.md (newest first) the moment an incident is being work
 
 - **Title & date** — short, searchable; the symptom, not the cause (the cause is not known yet).
 - **Host(s)** — which systems, named from FLEET.md.
-- **Symptom** — what was observed and how it surfaced (alert, user report, a /fleet-status probe). Concrete: error text, timestamps, the failing check.
+- **Symptom** — what was observed and how it surfaced (alert, user report, a fleet-status skill probe). Concrete: error text, timestamps, the failing check.
 - **Impact** — who/what is affected and how badly. This sets the urgency and the acceptable-risk bar for fixes.
 
 ## Fill as the investigation proceeds

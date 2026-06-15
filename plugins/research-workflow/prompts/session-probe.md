@@ -1,6 +1,6 @@
 --- SESSION PROBE (research-workflow) ---
 
-The artifacts above are this project's research memory (commonly the abstract, proposal, experiment notes, and results — the set varies with the work). If none were shown, this project is not yet initialized — run /research-init before doing research work.
+The artifacts above are this project's research memory (commonly the abstract, proposal, experiment notes, and results — the set varies with the work). If none were shown, this project is not yet initialized — run research-init skill before doing research work.
 
 Before running an experiment or writing analysis, summarize:
 1. The current research question and the live hypotheses — what is being tested and what would confirm or falsify it.
