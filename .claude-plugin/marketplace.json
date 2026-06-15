@@ -40,7 +40,7 @@
     {
       "name": "prototype-to-product",
       "source": "./plugins/prototype-to-product",
-      "description": "Hardens a working prototype into a pre-release product. Keeps a HARDENING.md gap ledger (release bar plus the itemized open gaps), loaded at session start, with the hardening standing rules re-injected per turn and a non-blocking reminder to keep the ledger current. Ships assess-prototype (build the ledger), define-release-target (set the bar and prioritize, extending SPEC.md if present), and convert-prototype (work the ledger down one item per commit). Activates only once a HARDENING.md exists."
+      "description": "Hardens a working prototype into a pre-release product. Keeps a HARDENING.md gap ledger (release bar plus the itemized open gaps), loaded at session start together with the hardening standing rules, plus a non-blocking reminder to keep the ledger current. Ships assess-prototype (build the ledger), define-release-target (set the bar and prioritize, extending SPEC.md if present), and convert-prototype (work the ledger down one item per commit). Activates only once a HARDENING.md exists."
     },
     {
       "name": "cwd-guard",

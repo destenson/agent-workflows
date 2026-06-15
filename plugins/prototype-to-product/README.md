@@ -16,8 +16,7 @@ All three are manual-only (`disable-model-invocation: true`) — they write to t
 
 The hooks engage only once a `HARDENING.md` exists, so the plugin is silent until you run `assess-prototype`:
 
-- `SessionStart` → loads `HARDENING.md` (the active worklist) into context and emits the session probe.
-- `UserPromptSubmit` → re-injects the hardening standing rules every turn (one item per commit; surface failures, don't paper over them; hold the bar both ways), so they don't get buried as context fills. These are additive to the agentic-workflow rules — they don't repeat them.
+- `SessionStart` → loads `HARDENING.md` (the active worklist) into context and emits the session probe, which states the three hardening standing rules for the session (one item per commit; surface failures, don't paper over them; hold the bar both ways). These are additive to the agentic-workflow rules — they don't repeat them. They are stated once per session, not re-injected each turn, on the view that they orient the work rather than needing constant reminding.
 - `Stop` → a non-blocking, once-per-session reminder to keep the ledger current (remove closed items, record newly-found gaps).
 
 ## Composes with agentic-workflow
