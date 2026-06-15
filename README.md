@@ -15,6 +15,7 @@ For the ideas these workflows are built on, read [PRINCIPLES.md](PRINCIPLES.md);
 | `research-workflow` | Self-contained research loop. Loads the research artifacts (abstract / proposal / experiments / results), re-injects research standing rules, and ships the problem-statement, literature-scan, gap-analysis, proposal, experiment-design, preregistration, results-memo, negative-results, and decision-memo skills. |
 | `sysadmin-workflow` | Administering and troubleshooting remote fleets. Loads `FLEET.md` plus the INCIDENTS / CHANGELOG / RUNBOOKS journals, re-injects ops standing rules, advises on destructive commands with an audit trail, and ships the troubleshooting-loop, fleet-onboard, incident-record, and runbook-capture skills. |
 | `c-suite` | Convenes executive-officer review lenses (CEO / CFO / COO / CTO / CMO / CLO) on one decision and preserves their disagreement instead of averaging it away. Keeps a governance spine (CHARTER / STRATEGY / BOARD) and ships the board-review workflow plus per-officer review skills. |
+| `handoff` | Standalone session handoff. Loads a pending `HANDOFF.md` at session start so a new session resumes where the last left off, gives a non-blocking reminder to record unfinished and newly-discovered work before wrapping up, and ships the handoff skill that writes, updates, and clears the rolling handoff. Independent of the other plugins. |
 
 ## Repository layout
 
@@ -46,7 +47,7 @@ plugins/<plugin>/
 /plugins install agentic-workflow
 ```
 
-Install whichever of the five plugins you need; they are independent (`embedded-target` is a complement to `agentic-workflow`, not a hard dependency). Each workflow is a skill, invoked as `/<plugin>:<skill>` in Claude Code or `@<skill>` in Codex — see [COMPATIBILITY.md](COMPATIBILITY.md) for the full list and which run manual-only.
+Install whichever plugins you need; they are independent (`embedded-target` is a complement to `agentic-workflow`, not a hard dependency). Each workflow is a skill, invoked as `/<plugin>:<skill>` in Claude Code or `@<skill>` in Codex — see [COMPATIBILITY.md](COMPATIBILITY.md) for the full list and which run manual-only.
 
 ## Status
 

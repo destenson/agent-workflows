@@ -26,6 +26,11 @@
       "name": "c-suite",
       "source": "./plugins/c-suite",
       "description": "Convenes executive-officer review lenses (CEO / CFO / COO / CTO / CMO / CLO) on a single cross-domain decision and preserves their disagreement instead of averaging it into false consensus. Keeps a small governance spine (CHARTER / STRATEGY / BOARD) as the project's executive memory, ships the c-suite-init and board-review convening workflows plus per-officer review skills, and gates session exit on recording any board decision (and its dissent) into BOARD.md."
+    },
+    {
+      "name": "handoff",
+      "source": "./plugins/handoff",
+      "description": "Standalone session-handoff plugin: loads a pending HANDOFF.md at session start so the next session resumes where the last left off, gives a non-blocking reminder to record unfinished and newly-discovered work before wrapping up, and ships the handoff skill that writes, updates, and clears the rolling handoff. Enable or disable independently of the other workflows."
     }
   ]
 }

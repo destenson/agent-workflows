@@ -23,7 +23,7 @@ codex
 /plugins install agentic-workflow
 ```
 
-The marketplace lists all five plugins (`agentic-workflow`, `embedded-target`, `research-workflow`, `sysadmin-workflow`, `c-suite`); install whichever you need.
+The marketplace lists every plugin (`agentic-workflow`, `embedded-target`, `research-workflow`, `sysadmin-workflow`, `c-suite`, `handoff`); install whichever you need.
 
 ## Commands are shipped as skills, not slash-command files
 
