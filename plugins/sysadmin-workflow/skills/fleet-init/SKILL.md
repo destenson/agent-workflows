@@ -1,5 +1,7 @@
 ---
-description: Scaffold the sysadmin workflow (FLEET.md plus the INCIDENTS / CHANGELOG / RUNBOOKS journals), seeding FLEET.md from infra files in the repo and a short interview.
+name: fleet-init
+disable-model-invocation: true
+description: Scaffold the sysadmin workflow (FLEET.md plus the INCIDENTS / CHANGELOG / RUNBOOKS journals), seeding FLEET.md from infra files in the repo and a short interview. Use when the user asks to initialize, scaffold, or set up the fleet / sysadmin workspace.
 ---
 
 Scaffold the durable artifacts for administering this fleet, then build a real `FLEET.md` from whatever infrastructure the repo describes plus a short interview — rather than leaving an empty map. A blank FLEET.md loaded every session steers nothing; the goal is an operating map the first session can trust.
@@ -40,7 +42,7 @@ Seed `FLEET.md` with the discovered systems: set the fleet name, fill the **Conv
 Then interview the user for the fields that are not in any file and must not be guessed, because they govern what is safe to run:
 
 - **Role and blast radius** — what each host does and what depends on it.
-- **State probes (read-only)** — the commands that report each host's health, used by `/fleet-status`. Ask; do not invent commands for a host you cannot see.
+- **State probes (read-only)** — the commands that report each host's health, used by the fleet-status skill. Ask; do not invent commands for a host you cannot see.
 - **Constraints & safety** — commands that must NOT be run on a host, maintenance windows, data that must not be touched. This is the most important field and the one with no discoverable source; never fabricate it.
 - **Hosts not in the repo** — ask whether there are systems administered from here that no infra file describes, and add them.
 - **Known quirks** — anything that misleads diagnosis.

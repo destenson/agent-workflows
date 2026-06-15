@@ -1,5 +1,7 @@
 ---
-description: Scaffold the research workflow in this project — a research/ directory with the common starter artifacts (abstract, proposal, experiments, results), customized to the project by autodiscovery and a short interview.
+name: research-init
+disable-model-invocation: true
+description: Scaffold the research workflow in this project — a research/ directory with the common starter artifacts (abstract, proposal, experiments, results), customized to the project by autodiscovery and a short interview. Use when the user asks to initialize, scaffold, or set up the project's research workspace.
 ---
 
 Scaffold the durable research artifacts from the plugin's templates at `${CLAUDE_PLUGIN_ROOT}/templates/`, then customize them to *this* project rather than leaving raw placeholders. A blank template loaded every session is dead weight; the goal is an abstract that actually frames the work from the first session.
@@ -56,4 +58,4 @@ Apply the answers to `abstract.md` and `proposal.md`.
 
 ## Report
 
-Tell the user: which files were created and which were skipped; for created files, what you filled in and the source of each inferred value; and what still needs them (the stubs, and which skill produces the fuller version). The fuller proposal and experiment plans come from the dedicated skills — this command seeds the durable core so the framing is live from session one. The research directory is meant to be committed; it is the project's research memory. The plugin keeps no other state in the project; the distillation gate's once-per-session marker lives in the temp dir.
+Tell the user: which files were created and which were skipped; for created files, what you filled in and the source of each inferred value; and what still needs them (the stubs, and which skill produces the fuller version). The fuller proposal and experiment plans come from the dedicated skills — this seeds the durable core so the framing is live from session one. The research directory is meant to be committed; it is the project's research memory. The plugin keeps no other state in the project; the distillation gate's once-per-session marker lives in the temp dir.

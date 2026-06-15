@@ -1,5 +1,7 @@
 ---
-description: Scaffold the c-suite governance spine (CHARTER, STRATEGY, BOARD) in a governance/ directory, customized to the project by autodiscovery and a short interview.
+name: c-suite-init
+disable-model-invocation: true
+description: Scaffold the c-suite governance spine (CHARTER, STRATEGY, BOARD) in a governance/ directory, customized to the project by autodiscovery and a short interview. Use when the user asks to initialize, scaffold, or set up the project's governance spine or executive memory.
 ---
 
 Scaffold the durable governance artifacts from the plugin's templates at `${CLAUDE_PLUGIN_ROOT}/templates/`, then customize them to *this* project rather than leaving raw placeholders. A blank charter and strategy steer nothing; the goal is a governance spine the officer and board-review skills can actually score proposals against from the first session.

@@ -1,0 +1,13 @@
+{
+  "name": "research-workflow",
+  "version": "0.2.0",
+  "description": "Self-contained base research workflow: loads the durable research artifacts (commonly abstract / proposal / experiments / results) from research/ at session start, re-injects research standing rules every turn, gates session exit on a distillation decision, and ships the research-init / problem-statement / literature-scan / gap-analysis / generate-research-proposal / experiment-design / preregistration / results-memo / negative-results / decision-memo skills.",
+  "author": { "name": "Dennis E" },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Research Workflow",
+    "category": "Productivity",
+    "shortDescription": "Durable research artifacts and standing rules",
+    "longDescription": "Self-contained research workflow: loads the durable research artifacts (abstract / proposal / experiments / results) from research/ at session start, re-injects research standing rules every turn, gates session exit on a distillation decision, and ships the problem-statement / literature-scan / gap-analysis / proposal / experiment-design / preregistration / results-memo / negative-results / decision-memo skills."
+  }
+}

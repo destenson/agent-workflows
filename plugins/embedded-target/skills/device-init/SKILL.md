@@ -1,5 +1,7 @@
 ---
-description: Scaffold the embedded target loop in this project — DEVICE.md plus the harness/, faults/, and repros/ skeletons.
+name: device-init
+disable-model-invocation: true
+description: Scaffold the embedded target loop in this project — DEVICE.md plus the harness/, faults/, and repros/ skeletons. Use when the user asks to initialize, scaffold, or set up the on-device build-deploy-run-collect loop for an embedded target.
 ---
 
 Scaffold the on-device loop for this project from the plugin's templates at `${CLAUDE_PLUGIN_ROOT}/templates/`. For each target below, copy it from the template only if it does not already exist; never overwrite an existing file — report it as skipped instead.
@@ -17,6 +19,6 @@ Then tell the user what they must fill in before the loop runs, in this order:
 2. `harness/env.sh` — `DEVICE_SSH` and the timeout values.
 3. The `# TODO(project)` markers in `harness/build.sh`, `deploy.sh`, `device-reset.sh`, `collect-diag.sh`, `backtrace.sh`.
 
-Recommend (do not apply silently) adding an allowlist for `harness/`, `faults/`, and `repros/` commands to the project's `.claude/settings.json` so the loop runs unattended while raw arbitrary ssh stays gated. Show the user the entries and let them decide.
+Recommend (do not apply silently) adding an allowlist for `harness/`, `faults/`, and `repros/` commands to the project's agent settings so the loop runs unattended while raw arbitrary ssh stays gated. Show the user the entries and let them decide.
 
 Report which files were created and which were skipped.

@@ -16,11 +16,11 @@ A small **`governance/`** directory, kept out of the repo root and committed as 
 
 Unlike the sibling plugins, this one is intentionally light on hooks — an executive review is an on-demand act, not an always-on background discipline. The skills read `governance/` themselves when they run; there is no SessionStart probe and no per-turn standing rules. The one hook is a `Stop` gate:
 
-- `Stop` → the board-decision gate. If a board review reached a decision this session that is not yet in `BOARD.md`, it nudges once before exit, then lets the next stop proceed. The handshake is explicit: `/board-review` drops a pending-decision marker when it produces a verdict; recording the decision to `BOARD.md` clears it; the gate fires at most once. The marker lives in `${TMPDIR:-/tmp}/c-suite/`, never in the project, and the gate stays silent until `/c-suite-init` has run.
+- `Stop` → the board-decision gate. If a board review reached a decision this session that is not yet in `BOARD.md`, it nudges once before exit, then lets the next stop proceed. The handshake is explicit: `/c-suite:board-review` drops a pending-decision marker when it produces a verdict; recording the decision to `BOARD.md` clears it; the gate fires at most once. The marker lives in `${TMPDIR:-/tmp}/c-suite/`, never in the project, and the gate stays silent until `/c-suite:c-suite-init` has run.
 
 There is deliberately **no complexity/line-cap gate** here — that is a code-maintainability concern owned by `agentic-workflow`, which a software project can install alongside this one.
 
-**Command:** `/c-suite-init` scaffolds `governance/` with starter `CHARTER.md`, `STRATEGY.md`, and an empty `BOARD.md` — a starting set, not a required one. The `governance/` directory is meant to be committed; it is the project's executive memory.
+**Skill:** `/c-suite:c-suite-init` scaffolds `governance/` with starter `CHARTER.md`, `STRATEGY.md`, and an empty `BOARD.md` — a starting set, not a required one. The `governance/` directory is meant to be committed; it is the project's executive memory.
 
 ## Skills
 
@@ -37,4 +37,4 @@ There is deliberately **no complexity/line-cap gate** here — that is a code-ma
 - [cmo-review](skills/cmo-review/SKILL.md) — who is this for, why will they choose it, how does it reach them? → positioning and go-to-market memo
 - [clo-review](skills/clo-review/SKILL.md) — what are we allowed to do here? → licensing/compliance/contractual-risk review
 
-Each officer can be invoked directly for single-lens work, or convened by `/board-review`. The roster is a menu to draw from sparingly — convening every officer on every proposal is how this turns into theater. It is deliberately incomplete: there is no security or people officer, because completing the org chart for its own sake is the failure mode the plugin is built to avoid.
+Each officer can be invoked directly for single-lens work, or convened by `/c-suite:board-review`. The roster is a menu to draw from sparingly — convening every officer on every proposal is how this turns into theater. It is deliberately incomplete: there is no security or people officer, because completing the org chart for its own sake is the failure mode the plugin is built to avoid.

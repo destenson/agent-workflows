@@ -12,21 +12,21 @@ A Claude Code plugin implementing the base workflow in [`agentic-dev-workflow.md
 
 **Skills** (invoke when relevant): `design-interview`, `assumption-audit`, `spike`, `bug-investigation`, `session-retrospective`, `entropy-pass`.
 
-**Command:** `/project-docs-init` scaffolds the four durable artifacts from `templates/`.
+**Skill:** `/agentic-workflow:project-docs-init` scaffolds the four durable artifacts from `templates/`.
 
 ## Install
 
 From this repo (it carries a marketplace manifest at the repo root):
 
 ```
-/plugin marketplace add /home/dennis/src/agent-workflows
+/plugin marketplace add destenson/agent-workflows
 /plugin install agentic-workflow
 ```
 
 Then, in a project you want to run the workflow in:
 
 ```
-/project-docs-init
+/agentic-workflow:project-docs-init
 ```
 
 ## Requirements

@@ -17,7 +17,7 @@ For the host being onboarded, establish each of these and write it into a FLEET.
 - **Reach** — the exact way to connect: SSH alias (confirm it resolves and connects), `kubectl --context`, cloud CLI + profile, or management URL. Verify reachability read-only before recording it; an access note that does not work is the worst kind of stale.
 - **Role & blast radius** — what the host does, what depends on it, and what breaks if it goes down. This is what makes "name the host" meaningful later.
 - **Services** — unit/deployment names, their restart commands, config paths, log paths. Enumerate from the host (`systemctl list-units`, `kubectl get`, etc.) rather than assuming.
-- **State probes (read-only)** — the specific commands that report this host's health. These are what /fleet-status will run, so they must be concrete and read-only. Capture the ones you actually used to inspect the host.
+- **State probes (read-only)** — the specific commands that report this host's health. These are what fleet-status skill will run, so they must be concrete and read-only. Capture the ones you actually used to inspect the host.
 - **Constraints & safety** — commands that must never run here, maintenance windows, data that must not be touched. Ask the operator; this cannot be inferred safely.
 - **Known quirks** — anything that misleads diagnosis (clock drift, a flaky interface, slow boot). Record what you noticed during inspection.
 

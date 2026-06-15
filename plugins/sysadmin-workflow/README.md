@@ -21,14 +21,14 @@ Administering a fleet is not a project with an end, so the memory it needs is di
 - `SessionStart` → loads the four artifacts into context and emits a session probe that forces a fleet-state summary before any live action.
 - `UserPromptSubmit` → re-injects the ops standing rules every turn (read before write; narrate destructive actions and name the host; journal as you go; report divergence).
 - `PreToolUse(Bash)` → the **safety gate** (see below).
-- `Stop` → the end-of-shift gate: blocks the first stop once, prompting to record changes/incidents/runbooks before the session ends. Its once-per-session marker lives in the temp dir (`${TMPDIR:-/tmp}/sysadmin-workflow/`), never in the project; a pre-init guard keeps it silent in a repo that has not run `/fleet-init`.
+- `Stop` → the end-of-shift gate: blocks the first stop once, prompting to record changes/incidents/runbooks before the session ends. Its once-per-session marker lives in the temp dir (`${TMPDIR:-/tmp}/sysadmin-workflow/`), never in the project; a pre-init guard keeps it silent in a repo that has not run `/sysadmin-workflow:fleet-init`.
 
-**Commands:**
-- `/fleet-init` — scaffolds the four artifacts into the fleet directory from `templates/`.
-- `/fleet-status [host|group]` — read-only, point-in-time state snapshot across the fleet, using the probes declared per host in `FLEET.md`. Observes and reports only; hands off to troubleshooting if it finds something broken.
-- `/add-server [name] [existing|new]` — onboard an existing host into `FLEET.md`, or provision a new one (Docker container, cloud instance, …; provisioning method is taken from your input or `FLEET.md` conventions, never guessed) and then onboard it, recording a `CHANGELOG` entry for the creation.
-- `/incident [title]` — open a structured incident in `INCIDENTS.md` (or continue an open one) and work it through the troubleshooting loop.
-- `/runbook [name]` — list runbooks, or execute a named one step-by-step with each state-changing step narrated, verified, and recorded.
+**Skills:**
+- `/sysadmin-workflow:fleet-init` — scaffolds the four artifacts into the fleet directory from `templates/`.
+- `/sysadmin-workflow:fleet-status [host|group]` — read-only, point-in-time state snapshot across the fleet, using the probes declared per host in `FLEET.md`. Observes and reports only; hands off to troubleshooting if it finds something broken.
+- `/sysadmin-workflow:add-server [name] [existing|new]` — onboard an existing host into `FLEET.md`, or provision a new one (Docker container, cloud instance, …; provisioning method is taken from your input or `FLEET.md` conventions, never guessed) and then onboard it, recording a `CHANGELOG` entry for the creation.
+- `/sysadmin-workflow:incident [title]` — open a structured incident in `INCIDENTS.md` (or continue an open one) and work it through the troubleshooting loop.
+- `/sysadmin-workflow:runbook [name]` — list runbooks, or execute a named one step-by-step with each state-changing step narrated, verified, and recorded.
 
 **Skills** (invoke when relevant): `troubleshooting-loop` (the diagnose→probe→hypothesize→change→verify→record loop against live systems), `fleet-onboard` (structured intake of a new host into `FLEET.md`), `incident-record` (structured incident capture), `runbook-capture` (turn a just-performed procedure into a reusable runbook).
 
@@ -45,12 +45,12 @@ It is **advisory and fires every time** — it never blocks. Each execution of a
 ## Install & use
 
 ```
-/plugin marketplace add git@github.com:destenson/agent-workflows.git
+/plugin marketplace add destenson/agent-workflows
 /plugin install sysadmin-workflow
 # then, in a project that administers a fleet:
-/fleet-init
+/sysadmin-workflow:fleet-init
 # fill in fleet/FLEET.md (one entry per host: reach, role, services, state probes, constraints), then:
-/fleet-status
+/sysadmin-workflow:fleet-status
 ```
 
 ## Requirements

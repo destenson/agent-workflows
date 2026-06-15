@@ -1,8 +1,10 @@
 ---
-description: Scaffold the four durable workflow artifacts (SPEC, ASSUMPTIONS, DECISIONS, LESSONS), seeding the SPEC framing from the project where it can be discovered.
+name: project-docs-init
+disable-model-invocation: true
+description: Scaffold the four durable workflow artifacts (SPEC, ASSUMPTIONS, DECISIONS, LESSONS), seeding the SPEC framing from the project where it can be discovered. Use when the user asks to initialize, scaffold, or set up the project's durable workflow docs.
 ---
 
-Initialize this project's durable workflow artifacts and seed the SPEC's framing from what the project already tells you, rather than leaving raw placeholders. Keep this light: the deeper SPEC sections and the assumptions are owned by dedicated skills (see below), and this command must not duplicate them.
+Initialize this project's durable workflow artifacts and seed the SPEC's framing from what the project already tells you, rather than leaving raw placeholders. Keep this light: the deeper SPEC sections and the assumptions are owned by dedicated skills (see below), and this must not duplicate them.
 
 Work in three phases: check, discover-and-seed, hand off.
 
@@ -31,7 +33,7 @@ Do **not** populate `ASSUMPTIONS.md` — it stays as the template. `DECISIONS.md
 
 ## 3. Hand off to the skills that own the rest
 
-This command deliberately seeds only the framing. The fuller artifacts come from dedicated skills, and that division of labor is intentional — point the user at them:
+This deliberately seeds only the framing. The fuller artifacts come from dedicated skills, and that division of labor is intentional — point the user at them:
 
 - Run **`design-interview`** to populate the rest of `SPEC.md` (success criteria, constraints, non-goals, premises) properly.
 - Run **`assumption-audit`** to turn the SPEC's premises into `ASSUMPTIONS.md`.

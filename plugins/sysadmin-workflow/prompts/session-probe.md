@@ -1,6 +1,6 @@
 --- SESSION PROBE (sysadmin-workflow) ---
 
-The artifacts above are this fleet's memory: FLEET.md (the hosts and how to reach them), INCIDENTS.md (what has broken and why), CHANGELOG.md (what has been changed), RUNBOOKS.md (worked-out procedures). If none were shown, this fleet is not yet initialized — run /fleet-init before administering it.
+The artifacts above are this fleet's memory: FLEET.md (the hosts and how to reach them), INCIDENTS.md (what has broken and why), CHANGELOG.md (what has been changed), RUNBOOKS.md (worked-out procedures). If none were shown, this fleet is not yet initialized — run fleet-init skill before administering it.
 
 Before running anything against a live system, summarize:
 1. The relevant fleet state — which hosts/systems are in scope and how they are reached (from FLEET.md).
