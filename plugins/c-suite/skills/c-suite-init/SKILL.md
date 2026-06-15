@@ -29,10 +29,13 @@ Do **not** try to discover or infer the **STRATEGY.md objectives and key results
 
 ## 3. Copy the templates
 
-Copy each missing file from `templates/` into `governance/`:
-- `governance/CHARTER.md` ← `templates/CHARTER.md`
-- `governance/STRATEGY.md` ← `templates/STRATEGY.md`
-- `governance/BOARD.md` ← `templates/BOARD.md`
+Run the scaffold helper, copying into `governance/` only files that do not already exist (it never overwrites):
+
+```
+"${CLAUDE_PLUGIN_ROOT}/scripts/scaffold.sh" "${CLAUDE_PLUGIN_ROOT}/templates" governance CHARTER.md STRATEGY.md BOARD.md
+```
+
+It prints `created <file>` / `skipped <file>` per file (and `missing-template <file>`, a packaging bug to surface, if a template is absent). The customize-and-interview phase below applies only to files this run created.
 
 These three are the starter spine, not a required fixed set. A project can add others (a risk register, a metrics scoreboard) or drop ones that do not apply — but `BOARD.md` is what the Stop gate watches for to decide whether the plugin is active in this project, so keep it if you want the decision-recording nudge. `BOARD.md` is an empty log; it is not customized here.
 

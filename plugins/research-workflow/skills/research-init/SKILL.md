@@ -30,12 +30,13 @@ Do **not** try to discover or infer the **live hypothesis** or the **success / d
 
 ## 3. Copy the templates
 
-Copy each missing file from `templates/` into the research directory (call it `<research>/`):
+Run the scaffold helper, passing the resolved research directory (call it `<research>/` — the value from phase 1) as the destination. It copies each file only if it does not already exist and never overwrites:
 
-- `<research>/abstract.md` ← `templates/abstract.md`
-- `<research>/proposal.md` ← `templates/proposal.md`
-- `<research>/experiments.md` ← `templates/experiments.md`
-- `<research>/results.md` ← `templates/results.md`
+```
+"${CLAUDE_PLUGIN_ROOT}/scripts/scaffold.sh" "${CLAUDE_PLUGIN_ROOT}/templates" <research> abstract.md proposal.md experiments.md results.md
+```
+
+It prints `created <file>` / `skipped <file>` per file (and `missing-template <file>`, a packaging bug to surface, if a template is absent). The customize and interview phases below apply only to files this run created.
 
 These four are the **common** starter set, not a required fixed set — the user can add others (a hypothesis register, a literature scan, a data management plan) or drop ones that do not apply. Every top-level `.md` in the research directory is loaded into context at session start; deeper material (per-experiment run logs, configs, outputs) belongs in subdirectories so it is not auto-loaded.
 

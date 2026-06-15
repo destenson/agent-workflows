@@ -10,10 +10,13 @@ Work in three phases: check, discover-and-seed, hand off.
 
 ## 1. Check what exists
 
-For each of `SPEC.md`, `ASSUMPTIONS.md`, `DECISIONS.md`, `LESSONS.md` in the project root:
+Run the scaffold helper, which copies each of `SPEC.md`, `ASSUMPTIONS.md`, `DECISIONS.md`, `LESSONS.md` into the project root only if it does not already exist, and never overwrites:
 
-- If the file already exists, leave it untouched and report that it was skipped. **Never overwrite.**
-- If it does not exist, create it from the matching template at `${CLAUDE_PLUGIN_ROOT}/templates/`.
+```
+"${CLAUDE_PLUGIN_ROOT}/scripts/scaffold.sh" "${CLAUDE_PLUGIN_ROOT}/templates" . SPEC.md ASSUMPTIONS.md DECISIONS.md LESSONS.md
+```
+
+It prints `created <file>` or `skipped <file>` per file (and `missing-template <file>`, a packaging bug to surface, if a template is absent). Report which were created and which were skipped. The phases below apply only to files this run created.
 
 ## 2. Discover and seed the SPEC framing
 

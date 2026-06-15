@@ -29,11 +29,13 @@ If the repo describes no infrastructure at all, say so and go straight to the in
 
 ## 3. Copy the templates
 
-Copy each missing file from `templates/` into the fleet directory (call it `<fleet>/`):
-- `<fleet>/FLEET.md` ← `templates/FLEET.md`
-- `<fleet>/INCIDENTS.md` ← `templates/INCIDENTS.md`
-- `<fleet>/CHANGELOG.md` ← `templates/CHANGELOG.md`
-- `<fleet>/RUNBOOKS.md` ← `templates/RUNBOOKS.md`
+Run the scaffold helper, passing the resolved fleet directory (call it `<fleet>/` — the value from phase 1) as the destination. It copies each file only if it does not already exist and never overwrites:
+
+```
+"${CLAUDE_PLUGIN_ROOT}/scripts/scaffold.sh" "${CLAUDE_PLUGIN_ROOT}/templates" <fleet> FLEET.md INCIDENTS.md CHANGELOG.md RUNBOOKS.md
+```
+
+It prints `created <file>` / `skipped <file>` per file (and `missing-template <file>`, a packaging bug to surface, if a template is absent). The build-by-interview phase below applies only to a `FLEET.md` this run created.
 
 ## 4. Build FLEET.md by interview
 
