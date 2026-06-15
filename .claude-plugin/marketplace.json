@@ -31,6 +31,11 @@
       "name": "handoff",
       "source": "./plugins/handoff",
       "description": "Standalone session-handoff plugin: loads a pending HANDOFF.md at session start so the next session resumes where the last left off, gives a non-blocking reminder to record unfinished and newly-discovered work before wrapping up, and ships the handoff skill that writes, updates, and clears the rolling handoff. Enable or disable independently of the other workflows."
+    },
+    {
+      "name": "cwd-guard",
+      "source": "./plugins/cwd-guard",
+      "description": "Standalone Bash guard: a PreToolUse(Bash) hook that denies any command hardcoding the current working directory — the project's own absolute path, a path under it, or a $PWD / $(pwd) expansion of it — so the agent uses paths relative to the project root. Absolute paths outside the project are left alone."
     }
   ]
 }
