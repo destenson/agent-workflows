@@ -10,7 +10,7 @@ A Claude Code plugin implementing the base workflow in [`agentic-dev-workflow.md
 - `PreToolUse(Edit|Write)` → advisory warning when the target file exceeds the complexity budget. Never blocks; enforcement belongs in CI. Override the cap with `COMPLEXITY_BUDGET_LINES` (default 1000).
 - `Stop` → the distillation gate. Blocks the first stop of a session with the distillation prompt, then allows the next. It gates on the agent being *prompted to decide*, not on content being produced — declaring "no entries" is the frictionless exit, which keeps forced-completion filler out of the journals.
 
-**Skills** (invoke when relevant): `design-interview`, `assumption-audit`, `spike`, `bug-investigation`, `session-retrospective`, `entropy-pass`.
+**Skills** (invoke when relevant): `design-interview`, `assumption-audit`, `spike`, `bug-investigation`, `fit-review`, `session-retrospective`, `entropy-pass`.
 
 **Skill:** `/agentic-workflow:project-docs-init` scaffolds the four durable artifacts from `templates/`.
 

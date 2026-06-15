@@ -1,13 +1,13 @@
 {
   "name": "agentic-workflow",
   "version": "0.2.0",
-  "description": "Implements the base agentic development workflow (agentic-dev-workflow.md): loads the four durable artifacts at session start, re-injects the standing rules every turn, gates session exit on a distillation decision, warns on complexity-budget violations, and ships the elicitation / assumption-audit / spike / bug-investigation / retrospective / entropy skills.",
+  "description": "Implements the base agentic development workflow (agentic-dev-workflow.md): loads the four durable artifacts at session start, re-injects the standing rules every turn, gates session exit on a distillation decision, warns on complexity-budget violations, and ships the elicitation / assumption-audit / spike / bug-investigation / fit-review / retrospective / entropy skills.",
   "author": { "name": "Dennis E" },
   "skills": "./skills/",
   "interface": {
     "displayName": "Agentic Dev Workflow",
     "category": "Coding",
     "shortDescription": "Spec-durable agentic development loop",
-    "longDescription": "Loads the four durable artifacts (SPEC / ASSUMPTIONS / DECISIONS / LESSONS) at session start, re-injects standing rules every turn, gates session exit on a distillation decision, warns on complexity-budget violations, and ships the elicitation / assumption-audit / spike / bug-investigation / retrospective / entropy skills."
+    "longDescription": "Loads the four durable artifacts (SPEC / ASSUMPTIONS / DECISIONS / LESSONS) at session start, re-injects standing rules every turn, gates session exit on a distillation decision, warns on complexity-budget violations, and ships the elicitation / assumption-audit / spike / bug-investigation / fit-review / retrospective / entropy skills."
   }
 }
