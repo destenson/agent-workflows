@@ -45,6 +45,9 @@ There are no `commands/` directories in this repo; the `SKILL.md` is the single 
 | `runbook` | `/sysadmin-workflow:runbook` | `@runbook` | manual only |
 | `fleet-status` | `/sysadmin-workflow:fleet-status` | `@fleet-status` | manual or model-invoked |
 | `incident` | `/sysadmin-workflow:incident` | `@incident` | manual or model-invoked |
+| `assess-prototype` | `/prototype-to-product:assess-prototype` | `@assess-prototype` | manual only |
+| `define-release-target` | `/prototype-to-product:define-release-target` | `@define-release-target` | manual only |
+| `convert-prototype` | `/prototype-to-product:convert-prototype` | `@convert-prototype` | manual only |
 
 "Manual only" skills carry `disable-model-invocation: true` in their frontmatter, so the model never triggers them on its own — they run only when you invoke them. These are the workflows that write or provision (the init scaffolders, `add-server`) or execute procedures against live hosts (`runbook`). `fleet-status` (read-only) and `incident` (reactive — you want it to engage when you report a problem) are left model-invocable. `disable-model-invocation` is a Claude Code frontmatter field; under Codex these skills are user-invoked via `@` regardless.
 

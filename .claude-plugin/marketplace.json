@@ -38,6 +38,11 @@
       "description": "Standalone bug-log plugin: when a BUGS.md exists at the project root, notes at session start that the project keeps a bug log and instructs the agent to record any bug found-but-not-fixed there (it does not load the file's contents), and gives a non-blocking reminder of the same before wrapping up. Ships the bugs skill that adds, updates, and resolves entries — removing each when fixed so the log tracks only what is still broken. Activates only once a BUGS.md exists; enable or disable independently of the other workflows."
     },
     {
+      "name": "prototype-to-product",
+      "source": "./plugins/prototype-to-product",
+      "description": "Hardens a working prototype into a pre-release product. Keeps a HARDENING.md gap ledger (release bar plus the itemized open gaps), loaded at session start, with the hardening standing rules re-injected per turn and a non-blocking reminder to keep the ledger current. Ships assess-prototype (build the ledger), define-release-target (set the bar and prioritize, extending SPEC.md if present), and convert-prototype (work the ledger down one item per commit). Activates only once a HARDENING.md exists."
+    },
+    {
       "name": "cwd-guard",
       "source": "./plugins/cwd-guard",
       "description": "Standalone Bash guard: a PreToolUse(Bash) hook that denies any command hardcoding the current working directory — the project's own absolute path, a path under it, or a $PWD / $(pwd) expansion of it — so the agent uses paths relative to the project root. Absolute paths outside the project are left alone."
