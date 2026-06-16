@@ -23,6 +23,10 @@ touch "$marker"
 
 if [[ -f HANDOFF.md ]]; then
   msg="handoff: a HANDOFF.md is in play this session — update or clear it with the handoff skill as the work progresses, so the next session is not handed stale state."
+  if ! grep HANDOFF.md .gitignore &>/dev/null; then
+    # TODO: if the file is already committed, add a note about committing the updated version, but if it has never been committed, ask the user if they want to add it to .gitignore to avoid accidentally committing transient state.
+    msg+=" (Tip: HANDOFF.md is not currently gitignored, if it has been committed before, it should be committed after updating. If it has never been committed, ask the user if they want to add it to .gitignore to avoid accidentally committing transient state.)"
+  fi
 else
   msg="handoff: if work is unfinished or you have discovered follow-up work, record it in HANDOFF.md with the handoff skill before wrapping up, so the next session can pick it up."
 fi

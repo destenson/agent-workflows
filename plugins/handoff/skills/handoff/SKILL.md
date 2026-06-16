@@ -7,20 +7,39 @@ Maintain `HANDOFF.md` at the project root — a single rolling handoff that lets
 
 ## Write or update
 
-1. If `HANDOFF.md` does not exist, create it from `${CLAUDE_PLUGIN_ROOT}/templates/HANDOFF.md`. If it already exists, **update it in place** — merge the current state into the existing sections rather than discarding what is still true.
-2. Fill it from the actual session, not from intention:
-   - **Done** — what is genuinely complete and verified.
-   - **In progress** — what is partially done and exactly where it stands: the file, the failing test, the half-applied change.
-   - **Discovered — not yet started** — work that surfaced this session but is out of the current change's scope. This is the main reason the handoff exists; capture it rather than letting it evaporate.
-   - **Next steps** — the concrete next action, specific enough to act on without re-investigating.
-   - **Open questions / decisions pending** and **Gotchas** — anything that will mislead the next agent (a dead end already tried, a wrong-looking-but-correct thing, a flaky step).
-3. Set **As of** to the current date and, where useful, the HEAD commit. Be honest about status: a short accurate handoff beats one padded with optimistic "done".
+Synthesize the session state, then run the write script with a JSON payload on stdin. The script creates or overwrites `HANDOFF.md` mechanically.
 
-## Keep it honest and local
+```bash
+cat <<'JSON' | bash "${CLAUDE_PLUGIN_ROOT}/scripts/write-handoff.sh"
+{
+  "as_of": "<date and HEAD commit if useful>",
+  "status": "<one-line status, e.g. 'feature X half-built; auth test failing'>",
+  "done": [
+    "<what is genuinely complete and verified>"
+  ],
+  "in_progress": [
+    "<what is partially done and exactly where it stands: the file, the failing test, the half-applied change>"
+  ],
+  "discovered": [
+    "<work that surfaced this session but is out of the current change's scope — the main reason this file exists>"
+  ],
+  "next_steps": [
+    "<the concrete next action, specific enough to resume without re-investigating>"
+  ],
+  "open_questions": [
+    "<anything waiting on a human call or unresolved>"
+  ],
+  "gotchas": [
+    "<what will mislead the next agent: a dead end already tried, a wrong-looking-but-correct thing, a flaky step>"
+  ]
+}
+JSON
+```
 
-- If something in an existing handoff no longer matches the code or state, correct it — do not leave stale claims for the next session to trust.
-- The handoff is local session state by default. On first creation, if this is a git repository and `HANDOFF.md` is not already ignored, offer to add it to `.gitignore` — show the line and let the user decide. Do not commit or ignore it silently. (If the user wants the handoff to travel to a teammate or another machine, they can choose to commit it instead.)
+Fill from the actual session, not from intention. A short accurate handoff beats one padded with optimistic "done". The script will warn you if `HANDOFF.md` is not gitignored; show that message to the user and let them decide whether to add the ignore entry.
 
 ## Clear when the work is picked up
 
-When the handed-over work has been fully resumed and finished, clear the handoff so the next session is not handed stale state: delete `HANDOFF.md`, or reset it to the empty template, after confirming with the user. Before clearing, make sure anything durable — a decision made, a lesson learned — has been recorded in the project's real memory, not left only in the handoff.
+When the handed-over work has been fully resumed and finished, delete the handoff so the next session is not handed stale state. Before clearing, make sure anything durable — a decision made, a lesson learned — has been recorded in the project's real memory, not left only in the handoff.
+
+Confirm with the user before clearing.
