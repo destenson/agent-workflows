@@ -15,7 +15,7 @@ The plugin **activates only once a `BUGS.md` exists** at the project root — th
 
 ## Skill
 
-- [bugs](skills/bugs/SKILL.md) — add, update, or resolve entries in `BUGS.md`. Adds a bug found-but-unfixed; removes an entry when its bug is fixed. Invoked as `/bugs:bugs` in Claude Code or `@bugs` in Codex.
+- [bugs](skills/bugs/SKILL.md) — add, update, or resolve entries in `BUGS.md`. Adds a bug found-but-unfixed; removes an entry when its bug is fixed. Invoked bare with nothing to record, it instead picks the most actionable open bug from the log, fixes it, and removes the entry. Invoked as `/bugs:bugs` in Claude Code or `@bugs` in Codex.
 
 ## The file
 
