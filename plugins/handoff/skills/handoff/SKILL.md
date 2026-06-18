@@ -7,7 +7,9 @@ Maintain `HANDOFF.md` at the project root — a single rolling handoff that lets
 
 ## Write or update
 
-Synthesize the session state, then run the write script with a JSON payload on stdin. The script creates or overwrites `HANDOFF.md` mechanically.
+If the HANDOFF.md file already exists, update it with the new session's state. If the session has made progress on the existing handoff, update the relevant sections and add any new discoveries or next steps. If the session has uncovered new information that changes the status or next steps, reflect that in the handoff as well.
+
+If the HANDOFF.md file does not exist, synthesize the session state, then run the write script with a JSON payload on stdin. The script *only* creates `HANDOFF.md` mechanically.
 
 ```bash
 cat <<'JSON' | bash "${CLAUDE_PLUGIN_ROOT}/scripts/write-handoff.sh"
