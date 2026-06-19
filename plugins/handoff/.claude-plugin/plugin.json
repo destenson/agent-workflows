@@ -1,6 +1,6 @@
 {
   "name": "handoff",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Session handoff for the next agent. Loads a pending HANDOFF.md at session start so a new session resumes where the last left off, gives a non-blocking reminder to record unfinished and newly-discovered work before wrapping up, and ships the handoff skill that writes, updates, and clears the rolling handoff. Standalone — enable or disable independently of the other workflows.",
   "author": { "name": "Dennis E" }
 }
